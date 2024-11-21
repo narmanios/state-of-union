@@ -59,11 +59,8 @@ async function fetchDataAndRender(filename, appId, highlightWords, appTitle) {
 
   tree(root);
 
-  const svg = app
-    .append("svg")
-    .attr("width", WIDTH)
-    .attr("height", HEIGHT)
-    // .attr("viewBox", `0 0 ${WIDTH} ${HEIGHT}`);
+  const svg = app.append("svg").attr("width", WIDTH).attr("height", HEIGHT);
+  // .attr("viewBox", `0 0 ${WIDTH} ${HEIGHT}`);
 
   const chart = svg.append("g").attr("transform", "translate(200 5)");
 
@@ -104,13 +101,25 @@ async function fetchDataAndRender(filename, appId, highlightWords, appTitle) {
           return `translate(${x} 0)`;
         })
         .attr("font-size", (d) => {
-          return highlightWords.some((word) => d.data.name.toLowerCase() === word.toLowerCase()) ? "18px" : "12px";
+          return highlightWords.some(
+            (word) => d.data.name.toLowerCase() === word.toLowerCase()
+          )
+            ? "18px"
+            : "12px";
         })
         .attr("font-weight", (d) => {
-          return highlightWords.some((word) => d.data.name.toLowerCase() === word.toLowerCase()) ? "bold" : "normal";
+          return highlightWords.some(
+            (word) => d.data.name.toLowerCase() === word.toLowerCase()
+          )
+            ? "bold"
+            : "normal";
         })
         .style("fill", (d) => {
-          return highlightWords.some((word) => d.data.name.toLowerCase() === word.toLowerCase()) ? "white" : "#BF0A30";
+          return highlightWords.some(
+            (word) => d.data.name.toLowerCase() === word.toLowerCase()
+          )
+            ? "white"
+            : "#BF0A30";
         })
         .style("border", "2px solid black")
         .style("border-radius", "2px")
@@ -118,12 +127,52 @@ async function fetchDataAndRender(filename, appId, highlightWords, appTitle) {
         .html((d) => d.data.name);
     });
 }
-fetchDataAndRender("/text/Clinton_2000.txt", "app1", ["peace", ""], "Clinton Jan 27, 2000");
-fetchDataAndRender("/text/Bush_2008.txt", "app2", ["peace", ""], "Bush Jan 28, 2008");
-fetchDataAndRender("/text/Obama_2016.txt", "app3", ["peace", ""], "Obama Jan 12, 2016");
-fetchDataAndRender("/text/Trump_2020.txt", "app4", ["peace", ""], "Trump Feb 4, 2020");
+fetchDataAndRender(
+  "./text/Clinton_2000.txt",
+  "app1",
+  ["peace", ""],
+  "Clinton Jan 27, 2000"
+);
+fetchDataAndRender(
+  "./text/Bush_2008.txt",
+  "app2",
+  ["peace", ""],
+  "Bush Jan 28, 2008"
+);
+fetchDataAndRender(
+  "./text/Obama_2016.txt",
+  "app3",
+  ["peace", ""],
+  "Obama Jan 12, 2016"
+);
+fetchDataAndRender(
+  "./text/Trump_2020.txt",
+  "app4",
+  ["peace", ""],
+  "Trump Feb 4, 2020"
+);
 
-fetchDataAndRender("/text/Clinton_2000.txt", "app5", ["climate", ""], "Clinton Jan 27, 2000");
-fetchDataAndRender("/text/Bush_2008.txt", "app6", ["climate", ""], "Bush Jan 28, 2008");
-fetchDataAndRender("/text/Obama_2016.txt", "app7", ["climate", ""], "Obama Jan 12, 2016");
-fetchDataAndRender("/text/Trump_2020.txt", "app8", ["climate", ""], "Trump Feb 4, 2020");
+fetchDataAndRender(
+  "./text/Clinton_2000.txt",
+  "app5",
+  ["climate", ""],
+  "Clinton Jan 27, 2000"
+);
+fetchDataAndRender(
+  "./text/Bush_2008.txt",
+  "app6",
+  ["climate", ""],
+  "Bush Jan 28, 2008"
+);
+fetchDataAndRender(
+  "./text/Obama_2016.txt",
+  "app7",
+  ["climate", ""],
+  "Obama Jan 12, 2016"
+);
+fetchDataAndRender(
+  "./text/Trump_2020.txt",
+  "app8",
+  ["climate", ""],
+  "Trump Feb 4, 2020"
+);
