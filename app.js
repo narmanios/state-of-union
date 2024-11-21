@@ -1,6 +1,12 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
-async function fetchDataAndRender(filename, appId, highlightWords, appTitle) {
+async function fetchDataAndRender(
+  filename,
+  appId,
+  highlightWords,
+  appTitle,
+  appDescrip
+) {
   const text = await d3.text(filename);
 
   const sentences = text.split("\n");
@@ -47,6 +53,15 @@ async function fetchDataAndRender(filename, appId, highlightWords, appTitle) {
     .style("font-weight", 100)
     .style("color", "white")
     .text(appTitle);
+
+  const Descrip = app
+    .append("h3")
+    .style("margin", "10")
+    .style("padding", "8px")
+    // .style("font-size", "2.1rem")
+    .style("font-weight", 100)
+    .style("color", "white")
+    .text(appDescrip);
 
   const WIDTH = 600,
     HEIGHT = 500;
@@ -131,48 +146,56 @@ fetchDataAndRender(
   "./text/Clinton_2000.txt",
   "app1",
   ["peace", ""],
-  "Clinton Jan 27, 2000"
+  "Clinton Jan 27, 2000",
+  "Peace 6 times from a total of 7,451 words"
 );
 fetchDataAndRender(
   "./text/Bush_2008.txt",
   "app2",
   ["peace", ""],
-  "Bush Jan 28, 2008"
+  "Bush Jan 28, 2008",
+  "Peace 5 times from a total of 5,752 words"
 );
 fetchDataAndRender(
   "./text/Obama_2016.txt",
   "app3",
   ["peace", ""],
-  "Obama Jan 12, 2016"
+  "Obama Jan 12, 2016",
+  "Peace 1 times from a total of 5,438 words"
 );
 fetchDataAndRender(
   "./text/Trump_2020.txt",
   "app4",
   ["peace", ""],
-  "Trump Feb 4, 2020"
+  "Trump Feb 4, 2020",
+  "Peace 1 times from a total of 6,391 words"
 );
 
 fetchDataAndRender(
   "./text/Clinton_2000.txt",
   "app5",
   ["climate", ""],
-  "Clinton Jan 27, 2000"
+  "Clinton Jan 27, 2000",
+  "Climate 1 time from a total of 7,451 words"
 );
 fetchDataAndRender(
   "./text/Bush_2008.txt",
   "app6",
   ["climate", ""],
-  "Bush Jan 28, 2008"
+  "Bush Jan 28, 2008",
+  "Climate 1 time from a total of 5,752 words"
 );
 fetchDataAndRender(
   "./text/Obama_2016.txt",
   "app7",
   ["climate", ""],
-  "Obama Jan 12, 2016"
+  "Obama Jan 12, 2016",
+  "Climate 3 time from a total of 5,438 words"
 );
 fetchDataAndRender(
   "./text/Trump_2020.txt",
   "app8",
   ["climate", ""],
-  "Trump Feb 4, 2020"
+  "Trump Feb 4, 2020",
+  "Climate 0 time from a total of 6,391 words"
 );
