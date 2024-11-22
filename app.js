@@ -119,8 +119,8 @@ async function fetchDataAndRender(
           return highlightWords.some(
             (word) => d.data.name.toLowerCase() === word.toLowerCase()
           )
-            ? "18px"
-            : "12px";
+            ? "12px"
+            : "8px";
         })
         .attr("font-weight", (d) => {
           return highlightWords.some(
@@ -147,28 +147,28 @@ fetchDataAndRender(
   "app1",
   ["peace", ""],
   "Clinton Jan 27, 2000",
-  "Peace 6 times from a total of 7,451 words"
+  "Peace in amongst 7,451 words"
 );
 fetchDataAndRender(
   "./text/Bush_2008.txt",
   "app2",
   ["peace", ""],
   "Bush Jan 28, 2008",
-  "Peace 5 times from a total of 5,752 words"
+  "Peace in amongst 5,752 words"
 );
 fetchDataAndRender(
   "./text/Obama_2016.txt",
   "app3",
   ["peace", ""],
   "Obama Jan 12, 2016",
-  "Peace 1 times from a total of 5,438 words"
+  "Peace in amongst 5,438 words"
 );
 fetchDataAndRender(
   "./text/Trump_2020.txt",
   "app4",
   ["peace", ""],
   "Trump Feb 4, 2020",
-  "Peace 1 times from a total of 6,391 words"
+  "Peace in amongst 6,220 words"
 );
 
 fetchDataAndRender(
@@ -176,26 +176,26 @@ fetchDataAndRender(
   "app5",
   ["climate", ""],
   "Clinton Jan 27, 2000",
-  "Climate 1 time from a total of 7,451 words"
+  "Climate in amongst 7,451 words"
 );
 fetchDataAndRender(
   "./text/Bush_2008.txt",
   "app6",
   ["climate", ""],
   "Bush Jan 28, 2008",
-  "Climate 1 time from a total of 5,752 words"
+  "Climate in amongst 5,752 words"
 );
 fetchDataAndRender(
   "./text/Obama_2016.txt",
   "app7",
   ["climate", ""],
   "Obama Jan 12, 2016",
-  "Climate 3 time from a total of 5,438 words"
+  "Climate in amongst 5,438 words"
 );
 fetchDataAndRender(
   "./text/Trump_2020.txt",
   "app8",
   ["climate", ""],
   "Trump Feb 4, 2020",
-  "Climate 0 time from a total of 6,391 words"
+  "Climate in amongst 6,220 words"
 );
