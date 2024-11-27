@@ -161,6 +161,7 @@ async function fetchDataAndRender(
   appId,
   highlightWords,
   appTitle,
+  speechDetails,
   appDescrip
 ) {
   const text = await d3.text(filename);
@@ -204,20 +205,33 @@ async function fetchDataAndRender(
     .style("box-shadow", "0px 0px 2px hsla(0, 0%, 0%, 0.1)");
 
   const title = app
-    .append("h2")
-    .style("margin", "10")
+    .append("h1")
+    .style("margin", "4px")
     .style("padding", "8px")
     .style("font-weight", 100)
     .style("color", "white")
     .text(appTitle);
 
-  const description = app
+  const blurb = app
+
     .append("h3")
+    .style("margin", "4px")
+    .style("padding", "8px")
+    .style("font-weight", 100)
+    .style("color", "white")
+    .style("width", "450px")
+    .style("display", "inline-block")
+    .style("border", "1px solid white")
+    // .style("background-color", "#BF0A30")
+    .text(appDescrip);
+
+  const description = app
+    .append("h2")
     .style("margin", "10")
     .style("padding", "8px")
     .style("font-weight", 100)
     .style("color", "white")
-    .text(appDescrip);
+    .text(speechDetails);
 
   // Dynamic dimensions based on viewport size
   const containerWidth = window.innerWidth; // Full width of the viewport
@@ -306,59 +320,83 @@ async function fetchDataAndRender(
 }
 
 fetchDataAndRender(
-  "./text/Clinton_2000.txt",
+  "./text/Biden_2023.txt",
   "app1",
   ["peace", ""],
-  "Clinton Jan 27, 2000",
-  "Peace in amongst 7,451 words"
+  "Biden Feb 7, 2023",
+  "Peace in amongst 7,223 words",
+  "The 2023 State of the Union Address was given by the 46th president of the United States, Joe Biden, on February 7, 2023, at 9:00 p.m. EST, in the chamber of the House of Representatives to the 118th Congress."
 );
 fetchDataAndRender(
-  "./text/Bush_2008.txt",
+  "./text/Trump_2020.txt",
   "app2",
   ["peace", ""],
-  "Bush Jan 28, 2008",
-  "Peace in amongst 5,752 words"
+  "Trump Feb 4, 2020",
+  "Peace in amongst 6,220 words",
+  "The 2020 State of the Union Address was given by the 45th president of the United States, Donald Trump, on February 4, 2020, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 116th United States Congress."
 );
+
 fetchDataAndRender(
   "./text/Obama_2016.txt",
   "app3",
   ["peace", ""],
   "Obama Jan 12, 2016",
-  "Peace in amongst 5,438 words"
-);
-fetchDataAndRender(
-  "./text/Trump_2020.txt",
-  "app4",
-  ["peace", ""],
-  "Trump Feb 4, 2020",
-  "Peace in amongst 6,220 words"
-);
-
-fetchDataAndRender(
-  "./text/Clinton_2000.txt",
-  "app5",
-  ["climate", ""],
-  "Clinton Jan 27, 2000",
-  "Climate in amongst 7,451 words"
+  "Peace in amongst 5,438 words",
+  "The 2016 State of the Union Address was given by the 44th president of the United States, Barack Obama, on January 12, 2016, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 114th United States Congress."
 );
 fetchDataAndRender(
   "./text/Bush_2008.txt",
-  "app6",
-  ["climate", ""],
+  "app4",
+  ["peace", ""],
   "Bush Jan 28, 2008",
-  "Climate in amongst 5,752 words"
+  "Peace in amongst 5,752 words",
+  "The 2008 State of the Union Address was given by the 43rd president of the United States, George W. Bush, on January 28, 2008, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 110th United States Congress."
 );
 fetchDataAndRender(
-  "./text/Obama_2016.txt",
-  "app7",
+  "./text/Clinton_2000.txt",
+  "app5",
+  ["peace", ""],
+  "Clinton Jan 27, 2000",
+  "Peace in amongst 7,451 words",
+  "The 2000 State of the Union Address was given by the 42nd president of the United States, Bill Clinton, on January 27, 2000, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 106th United States Congress."
+);
+fetchDataAndRender(
+  "./text/Biden_2023.txt",
+  "app6",
   ["climate", ""],
-  "Obama Jan 12, 2016",
-  "Climate in amongst 5,438 words"
+  "Biden Feb 7, 2023",
+  "Climate in amongst 7,223 words",
+  "The 2023 State of the Union Address was given by the 46th president of the United States, Joe Biden, on February 7, 2023, at 9:00 p.m. EST, in the chamber of the House of Representatives to the 118th Congress."
 );
 fetchDataAndRender(
   "./text/Trump_2020.txt",
-  "app8",
+  "app7",
   ["climate", ""],
   "Trump Feb 4, 2020",
-  "Climate in amongst 6,220 words"
+  "Climate in amongst 6,220 words",
+  "The 2020 State of the Union Address was given by the 45th president of the United States, Donald Trump, on February 4, 2020, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 116th United States Congress. "
+);
+fetchDataAndRender(
+  "./text/Obama_2016.txt",
+  "app8",
+  ["climate", ""],
+  "Obama Jan 12, 2016",
+  "Climate in amongst 5,438 words",
+  "The 2016 State of the Union Address was given by the 44th president of the United States, Barack Obama, on January 12, 2016, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 114th United States Congress."
+);
+fetchDataAndRender(
+  "./text/Bush_2008.txt",
+  "app9",
+  ["climate", ""],
+  "Bush Jan 28, 2008",
+  "Climate in amongst 5,752 words",
+  "The 2008 State of the Union Address was given by the 43rd president of the United States, George W. Bush, on January 28, 2008, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 110th United States Congress."
+);
+fetchDataAndRender(
+  "./text/Clinton_2000.txt",
+  "app10",
+  ["climate", ""],
+  "Clinton Jan 27, 2000",
+  "Climate in amongst 7,451 words",
+  "The 2000 State of the Union Address was given by the 42nd president of the United States, Bill Clinton, on January 27, 2000, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 106th United States Congress."
 );
