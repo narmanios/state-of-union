@@ -195,6 +195,16 @@ async function fetchDataAndRender(
   });
   console.log(wordCount);
 
+  const containerWidth = window.innerWidth;
+  const containerHeight = window.innerHeight;
+  const WIDTH = Math.min(containerWidth, 1000);
+  const HEIGHT = Math.min(containerHeight, 1000);
+
+  window.addEventListener("resize", () => {
+    const containerWidth = app.node().getBoundingClientRect().width;
+    description.style("max-width", `${Math.min(containerWidth - 20, 400)}px`);
+  });
+
   const app = d3
     .select(`#${appId}`)
     .html("")
@@ -215,33 +225,46 @@ async function fetchDataAndRender(
   const blurb = app
 
     .append("h3")
-    .style("margin", "4px")
+    .style("margin", "8px")
     .style("padding", "8px")
     .style("font-weight", 100)
     .style("color", "white")
-    .style("width", "350px")
-    .style("border", "1px solid white")
+    .style("width", "auto")
     // .style("background-color", "#BF0A30")
-    .text(appDescrip);
+    .style("border", "1px solid white")
+
+    .text(speechDetails);
 
   const description = app
     .append("h2")
-    .style("margin", "10")
     .style("padding", "8px")
+    .style("margin", "8px")
     .style("font-weight", 100)
     .style("color", "white")
-    .text(speechDetails);
+    .style("word-wrap", "break-word")
+    .style("line-height", "1.5")
+    .style("width", "100%")
+
+    // .style("width", `${Math.min(WIDTH - 20, 400)}px`)
+    .text(appDescrip);
 
   // Dynamic dimensions based on viewport size
-  const containerWidth = window.innerWidth; // Full width of the viewport
-  const containerHeight = window.innerHeight; // Full height of the viewport
-  const WIDTH = Math.min(containerWidth, 1000); // Max width of 1000px
-  const HEIGHT = Math.min(containerHeight, 1000); // Max height of 1000px
+  // const containerWidth = window.innerWidth; // Full width of the viewport
+  // const containerHeight = window.innerHeight; // Full height of the viewport
+  // const WIDTH = Math.min(containerWidth, 1000); // Max width of 1000px
+  // const HEIGHT = Math.min(containerHeight, 1000); // Max height of 1000px
+  // const dynamicWidth = Math.min(containerWidth - 40, 800);
+  // description.style("width", `${dynamicWidth}px`);
 
   const root = d3.hierarchy(data, (d) => d.children);
 
   const tree = d3.tree().size([HEIGHT - 100, WIDTH - 200]); // Adjust tree layout
   tree(root);
+
+  app
+    .style("width", "100%")
+    .style("max-width", "1000px")
+    .style("box-sizing", "border-box");
 
   const svg = app
     .append("svg")
@@ -323,16 +346,16 @@ fetchDataAndRender(
   "app1",
   ["peace", ""],
   "Biden Feb 7, 2023",
-  "Peace in amongst 7,223 words",
-  "The 2023 State of the Union Address was given by the 46th president of the United States, Joe Biden, on February 7, 2023, at 9:00 p.m. EST, in the chamber of the House of Representatives to the 118th Congress."
+  "The 2023 State of the Union Address was given by the 46th president of the United States, Joe Biden, on February 7, 2023, at 9:00 p.m. EST, in the chamber of the House of Representatives to the 118th Congress.",
+  "Peace in amongst 7,223 words"
 );
 fetchDataAndRender(
   "./text/Trump_2020.txt",
   "app2",
   ["peace", ""],
-  "Trump Feb 4, 2020",
   "Peace in amongst 6,220 words",
-  "The 2020 State of the Union Address was given by the 45th president of the United States, Donald Trump, on February 4, 2020, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 116th United States Congress."
+  "The 2020 State of the Union Address was given by the 45th president of the United States, Donald Trump, on February 4, 2020, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 116th United States Congress.",
+  "Trump Feb 4, 2020"
 );
 
 fetchDataAndRender(
@@ -340,62 +363,62 @@ fetchDataAndRender(
   "app3",
   ["peace", ""],
   "Obama Jan 12, 2016",
-  "Peace in amongst 5,438 words",
-  "The 2016 State of the Union Address was given by the 44th president of the United States, Barack Obama, on January 12, 2016, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 114th United States Congress."
+  "The 2016 State of the Union Address was given by the 44th president of the United States, Barack Obama, on January 12, 2016, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 114th United States Congress.",
+  "Peace in amongst 5,438 words"
 );
 fetchDataAndRender(
   "./text/Bush_2008.txt",
   "app4",
   ["peace", ""],
   "Bush Jan 28, 2008",
-  "Peace in amongst 5,752 words",
-  "The 2008 State of the Union Address was given by the 43rd president of the United States, George W. Bush, on January 28, 2008, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 110th United States Congress."
+  "The 2008 State of the Union Address was given by the 43rd president of the United States, George W. Bush, on January 28, 2008, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 110th United States Congress.",
+  "Peace in amongst 5,752 words"
 );
 fetchDataAndRender(
   "./text/Clinton_2000.txt",
   "app5",
   ["peace", ""],
   "Clinton Jan 27, 2000",
-  "Peace in amongst 7,451 words",
-  "The 2000 State of the Union Address was given by the 42nd president of the United States, Bill Clinton, on January 27, 2000, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 106th United States Congress."
+  "The 2000 State of the Union Address was given by the 42nd president of the United States, Bill Clinton, on January 27, 2000, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 106th United States Congress.",
+  "Peace in amongst 7,451 words"
 );
 fetchDataAndRender(
   "./text/Biden_2023.txt",
   "app6",
   ["climate", ""],
   "Biden Feb 7, 2023",
-  "Climate in amongst 7,223 words",
-  "The 2023 State of the Union Address was given by the 46th president of the United States, Joe Biden, on February 7, 2023, at 9:00 p.m. EST, in the chamber of the House of Representatives to the 118th Congress."
+  "The 2023 State of the Union Address was given by the 46th president of the United States, Joe Biden, on February 7, 2023, at 9:00 p.m. EST, in the chamber of the House of Representatives to the 118th Congress.",
+  "Climate in amongst 7,223 words"
 );
 fetchDataAndRender(
   "./text/Trump_2020.txt",
   "app7",
   ["climate", ""],
   "Trump Feb 4, 2020",
-  "Climate in amongst 6,220 words",
-  "The 2020 State of the Union Address was given by the 45th president of the United States, Donald Trump, on February 4, 2020, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 116th United States Congress. "
+  "The 2020 State of the Union Address was given by the 45th president of the United States, Donald Trump, on February 4, 2020, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 116th United States Congress.",
+  "Climate in amongst 6,220 words"
 );
 fetchDataAndRender(
   "./text/Obama_2016.txt",
   "app8",
   ["climate", ""],
   "Obama Jan 12, 2016",
-  "Climate in amongst 5,438 words",
-  "The 2016 State of the Union Address was given by the 44th president of the United States, Barack Obama, on January 12, 2016, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 114th United States Congress."
+  "The 2016 State of the Union Address was given by the 44th president of the United States, Barack Obama, on January 12, 2016, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 114th United States Congress.",
+  "Climate in amongst 5,438 words"
 );
 fetchDataAndRender(
   "./text/Bush_2008.txt",
   "app9",
   ["climate", ""],
   "Bush Jan 28, 2008",
-  "Climate in amongst 5,752 words",
-  "The 2008 State of the Union Address was given by the 43rd president of the United States, George W. Bush, on January 28, 2008, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 110th United States Congress."
+  "The 2008 State of the Union Address was given by the 43rd president of the United States, George W. Bush, on January 28, 2008, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 110th United States Congress.",
+  "Climate in amongst 5,752 words"
 );
 fetchDataAndRender(
   "./text/Clinton_2000.txt",
   "app10",
   ["climate", ""],
   "Clinton Jan 27, 2000",
-  "Climate in amongst 7,451 words",
-  "The 2000 State of the Union Address was given by the 42nd president of the United States, Bill Clinton, on January 27, 2000, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 106th United States Congress."
+  "The 2000 State of the Union Address was given by the 42nd president of the United States, Bill Clinton, on January 27, 2000, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 106th United States Congress.",
+  "Climate in amongst 7,451 words"
 );
