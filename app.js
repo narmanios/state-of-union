@@ -219,8 +219,7 @@ async function fetchDataAndRender(
     .style("padding", "8px")
     .style("font-weight", 100)
     .style("color", "white")
-    .style("width", "450px")
-    .style("display", "inline-block")
+    .style("width", "350px")
     .style("border", "1px solid white")
     // .style("background-color", "#BF0A30")
     .text(appDescrip);
