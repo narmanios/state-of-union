@@ -353,9 +353,9 @@ fetchDataAndRender(
   "./text/Trump_2020.txt",
   "app2",
   ["peace", ""],
-  "Peace in amongst 6,220 words",
+  "Trump Feb 4, 2020",
   "The 2020 State of the Union Address was given by the 45th president of the United States, Donald Trump, on February 4, 2020, at 9:00 p.m. EST, in the chamber of the United States House of Representatives to the 116th United States Congress.",
-  "Trump Feb 4, 2020"
+  "Peace in amongst 6,220 words"
 );
 
 fetchDataAndRender(
