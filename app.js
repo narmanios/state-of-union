@@ -136,8 +136,6 @@ async function fetchDataAndRender(
       return d.parent.data.name === "Start" ? "transparent" : "none";
     });
 
-  const highlightWordsGroups = [];
-
   // Draw nodes and labels
   chart
     .selectAll("g")
@@ -150,13 +148,6 @@ async function fetchDataAndRender(
         .attr("text-anchor", (d) => (d.children ? "end" : "start"))
         .attr("transform", (d) => `translate(${d.children ? -10 : 10}, 0)`)
         .attr("font-size", (d) => {
-          if (
-            highlightWords.some(
-              (word) => d.data.name.toLowerCase() === word.toLowerCase()
-            )
-          ) {
-            highlightWordsGroups.push(g);
-          }
           const baseSize = highlightWords.some(
             (word) => d.data.name.toLowerCase() === word.toLowerCase()
           )
@@ -195,13 +186,19 @@ async function fetchDataAndRender(
         // .style("padding", "1px")
         .html((d) => d.data.name);
     });
-  // Bring highlighted words to front
-  highlightWordsGroups.forEach((group) => {
-    const node = group.node();
-    const parent = node.parentNode;
-    parent.removeChild(node);
-    parent.appendChild(node);
-  });
+
+  // Bring highlighted words to the front by reordering the DOM elements
+  chart
+    .selectAll("g")
+    .filter((d) =>
+      highlightWords.some(
+        (word) => d.data.name.toLowerCase() === word.toLowerCase()
+      )
+    )
+    .raise();
+
+  // selection.raise() re-inserts each selected element as the last child of its parent.
+  // https://d3js.org/d3-selection/modifying#selection_raise
 }
 
 fetchDataAndRender(
