@@ -26,20 +26,18 @@ body {
   /* background: #041D45; */
   box-shadow: 0px 0px 2px hsla(0, 0%, 0%, 0.1);
   margin-bottom: 20px;
-  margin-right: 20px;
+
   float: left;
 }
 
 #peace {
   background-color: #041d45;
   width: 100%;
-  padding-left: 50px;
   display: inline-block;
 }
 
 #climate {
   background-color: #bf0a30;
-  padding-left: 50px;
   width: 100%;
   display: inline-block;
 }
@@ -83,4 +81,21 @@ svg {
   max-width: 100%;
   height: auto;
   margin: 0 auto;
+}
+
+@media screen and (min-width: 767px) {
+  #peace {
+    padding-left: 50px;
+  }
+
+  #climate {
+    padding-left: 50px;
+  }
+
+  .app {
+    margin-right: 20px;
+  }
+  .app {
+    
+  }
 }

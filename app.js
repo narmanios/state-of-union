@@ -41,7 +41,8 @@ async function fetchDataAndRender(
 
   const containerWidth = window.innerWidth;
   const containerHeight = window.innerHeight;
-  const WIDTH = Math.min(containerWidth, 1000);
+  const WIDTH = containerWidth;
+  // const WIDTH = Math.min(containerWidth, 1000);
   const HEIGHT = Math.min(containerHeight, 1000);
 
   window.addEventListener("resize", () => {
@@ -87,7 +88,7 @@ async function fetchDataAndRender(
     .style("color", "white")
     .style("word-wrap", "break-word")
     .style("line-height", "1.5")
-    .style("width", "100%")
+    .style("width", "50%")
 
     // .style("width", `${Math.min(WIDTH - 20, 400)}px`)
     .text(appDescrip);
@@ -102,12 +103,12 @@ async function fetchDataAndRender(
 
   const root = d3.hierarchy(data, (d) => d.children);
 
-  const tree = d3.tree().size([HEIGHT - 100, WIDTH - 200]); // Adjust tree layout
+  const tree = d3.tree().size([HEIGHT - 100, WIDTH * 0.85]); // Adjust tree layout
   tree(root);
 
   app
     .style("width", "100%")
-    .style("max-width", "1000px")
+    // .style("max-width", "1000px")
     .style("box-sizing", "border-box");
 
   const svg = app
@@ -135,6 +136,8 @@ async function fetchDataAndRender(
       return d.parent.data.name === "Start" ? "transparent" : "none";
     });
 
+  const highlightWordsGroups = [];
+
   // Draw nodes and labels
   chart
     .selectAll("g")
@@ -147,10 +150,19 @@ async function fetchDataAndRender(
         .attr("text-anchor", (d) => (d.children ? "end" : "start"))
         .attr("transform", (d) => `translate(${d.children ? -10 : 10}, 0)`)
         .attr("font-size", (d) => {
+          if (
+            highlightWords.some(
+              (word) => d.data.name.toLowerCase() === word.toLowerCase()
+            )
+          ) {
+            highlightWordsGroups.push(g);
+          }
           const baseSize = highlightWords.some(
             (word) => d.data.name.toLowerCase() === word.toLowerCase()
           )
-            ? 18
+            ? WIDTH > 600
+              ? 18
+              : 40
             : 8;
 
           // Scale font size based on width
@@ -178,11 +190,18 @@ async function fetchDataAndRender(
             ? "5"
             : "1"
         )
-        .style("border", "2px solid black")
-        .style("border-radius", "2px")
-        .style("padding", "1px")
+        // .style("border", "2px solid black")
+        // .style("border-radius", "2px")
+        // .style("padding", "1px")
         .html((d) => d.data.name);
     });
+  // Bring highlighted words to front
+  highlightWordsGroups.forEach((group) => {
+    const node = group.node();
+    const parent = node.parentNode;
+    parent.removeChild(node);
+    parent.appendChild(node);
+  });
 }
 
 fetchDataAndRender(
